@@ -1,5 +1,13 @@
-import React, { useState, useEffect } from "react";
-import { SafeAreaView, View, Text, Dimensions, StyleSheet } from "react-native";
+import React, { useState, useEffect, forwardRef } from "react";
+import {
+  SafeAreaView,
+  View,
+  Text,
+  Button,
+  Dimensions,
+  StyleSheet,
+} from "react-native";
+import { Link } from "expo-router";
 
 import Geolocation from "@react-native-community/geolocation";
 import MapView, { Marker } from "react-native-maps";
@@ -84,6 +92,9 @@ const TrackUserMapView = () => {
           </View> */}
         </MapView>
       )}
+      <Link href="/src/camera" asChild>
+        <Button title="Go to camera" />
+      </Link>
     </SafeAreaView>
   );
 };
