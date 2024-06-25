@@ -23,10 +23,12 @@ const TrackUserMapView = () => {
   const [initialRegion, setInitialRegion] = useState(null); //地図の初期表示範囲を保持します。
 
   const [modalVisible, setModalVisible] = useState(false); // モーダルの表示状態を管理するステート
+const [distance, setDistance] = useState(0);
 
-  const handleMarkerPress = () => {
-    setModalVisible(true); // マーカーが押されたらモーダルを表示する
-    
+  const handleMarkerPress = (latitude, longitude) => {
+    const distance = calculateDistance(position.latitude, position.longitude, latitude, longitude);
+    setDistance(distance); // 距離を状態として更新
+    setModalVisible(true); // モーダルを表示
   };
 
 
@@ -113,7 +115,8 @@ const TrackUserMapView = () => {
             }}
             title="神戸電子学生会館"
             description="ここでアプリは作られた。"
-            onPress={handleMarkerPress} // マーカーが押されたときの処理
+            onPress={() => handleMarkerPress(34.69891700747491, 135.19364647347652)} // マーカーが押されたときの処理
+            
           >
             <Image
           source={require('./image/S__5201926.jpg')}
@@ -152,7 +155,7 @@ const TrackUserMapView = () => {
         }}
       ><View style={styles.centeredView}>
       <View style={styles.modalView}>
-        <Text>マーカーがクリックされました!</Text>
+        <Text>{distance.toFixed(2)}メートル</Text>
         <Image 
         source={require('./image/S__5201926.jpg')}
         style={styles.markerImage}/>
