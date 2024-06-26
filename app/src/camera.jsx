@@ -14,15 +14,13 @@ import {
 } from "react-native-vision-camera";
 import * as ImagePicker from "expo-image-picker";
 
-const CameraScreen = () => {
-  const device = useCameraDevice("back", {
-    physicalDevices: ["wide-angle-camera"],
-  });
+export default function CameraScreen() {
+  const cameraRef = useRef(null);
+  const device = useCameraDevice("back");
+  // const cameraDevice = device.back;
   const { hasPermission, requestPermission } = useCameraPermission();
   const [isActive, setIsActive] = useState(false);
   const [image, setImage] = useState("");
-
-  const camera = useRef < Camera > null;
 
   useFocusEffect(
     useCallback(() => {
@@ -35,6 +33,8 @@ const CameraScreen = () => {
     }, [])
   );
 
+  console.log(cameraRef);
+
   useEffect(() => {
     if (!hasPermission) {
       requestPermission();
@@ -42,8 +42,16 @@ const CameraScreen = () => {
   }, [hasPermission]);
 
   const onTakePicturePressed = async () => {
-    const photo = await camera.current?.takePhoto();
-    console.log(photo);
+    // const camera = useRef < Camera > null;
+    try {
+      if (cameraRef.current == null) {
+        console.log("^^");
+      }
+      const photo = await cameraRef.current.takePhoto();
+      console.log(photo);
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   async function pickImage() {
@@ -59,11 +67,12 @@ const CameraScreen = () => {
     <View style={{ flex: 1 }}>
       <Stack.Screen options={{ headerShown: false }} />
       <Camera
-        useRef={camera}
+        ref={cameraRef}
         style={StyleSheet.absoluteFill}
         device={device}
-        isActive={isActive}
         photo={true}
+        photoQualityBalance="speed"
+        isActive={isActive}
       />
       <Pressable
         onPress={onTakePicturePressed}
@@ -76,9 +85,9 @@ const CameraScreen = () => {
           backgroundColor: "white",
           borderRadius: 75,
         }}
-      />
+      ></Pressable>
       <TouchableOpacity
-        //onPress={}
+        onPress={pickImage}
         style={{
           position: "absolute",
           alignSelf: "center",
@@ -94,6 +103,4 @@ const CameraScreen = () => {
       ></TouchableOpacity>
     </View>
   );
-};
-
-export default CameraScreen;
+}
