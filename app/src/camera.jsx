@@ -5,6 +5,7 @@ import {
   StyleSheet,
   Pressable,
   TouchableOpacity,
+  Image, // 修正: Image をインポート
 } from "react-native";
 import { Stack, useFocusEffect } from "expo-router";
 import {
@@ -12,7 +13,6 @@ import {
   useCameraDevice,
   Camera,
   PhotoFile,
-  image,
 } from "react-native-vision-camera";
 import * as ImagePicker from "expo-image-picker";
 import { FontAwesome5 } from "@expo/vector-icons";
@@ -21,11 +21,10 @@ import { Button } from "react-native-web";
 export default function CameraScreen() {
   const cameraRef = useRef(null);
   const device = useCameraDevice("back");
-  // const cameraDevice = device.back;
   const { hasPermission, requestPermission } = useCameraPermission();
   const [isActive, setIsActive] = useState(false);
-  const [image, setImage] = useState("");
-  const [photo, setPhoto] = useState < PhotoFile > null;
+  const [image, setImage] = useState(""); // 修正: 初期値を設定
+  const [photo, setPhoto] = useState(null); // 修正: 型アノテーションを削除
   const [flash, setFlash] = useState(false);
 
   useFocusEffect(
@@ -49,6 +48,7 @@ export default function CameraScreen() {
     try {
       if (cameraRef.current == null) {
         console.log("null");
+        return;
       }
       const photo = await cameraRef.current.takePhoto();
       console.log(photo);
@@ -63,9 +63,9 @@ export default function CameraScreen() {
       return;
     }
 
-    const result = await fetch("file://${file.path}");
+    const result = await fetch(`file://${photo.path}`); // 修正: photo.path を使用
     const data = await result.blob();
-    // console.log(data);
+    console.log(data);
   };
 
   async function pickImage() {
@@ -75,6 +75,9 @@ export default function CameraScreen() {
       aspect: [9, 16],
       quality: 1,
     });
+    if (!result.canceled) {
+      setImage(result.uri);
+    }
   }
 
   return (
@@ -93,7 +96,7 @@ export default function CameraScreen() {
       {photo ? (
         <>
           <FontAwesome5
-            onPress={() => setPhoto(undefined)}
+            onPress={() => setPhoto(null)}
             name="arrow-left"
             size={25}
             color="red"
@@ -111,7 +114,11 @@ export default function CameraScreen() {
           >
             <Button title="Upload" onPress={uploadPhoto} />
           </View>
-          <image source={{ uri: photo.path }} style={StyleSheet.absoluteFill} />
+          <Image
+            source={{ uri: `file://${photo.path}` }}
+            style={StyleSheet.absoluteFill}
+          />{" "}
+          {/* 修正: Image コンポーネントを使用 */}
         </>
       ) : (
         <>
@@ -141,7 +148,9 @@ export default function CameraScreen() {
               justifyContent: "center",
               alignItems: "center",
             }}
-          />
+          >
+            <Text style={{ color: "white" }}>Pick</Text>
+          </TouchableOpacity>
         </>
       )}
     </View>
