@@ -1,11 +1,10 @@
 import { useCallback, useEffect, useState, useRef } from "react";
 import {
   View,
-  Text,
   StyleSheet,
   Pressable,
   TouchableOpacity,
-  Image, // 修正: Image をインポート
+  Image,
 } from "react-native";
 import { Stack, useFocusEffect } from "expo-router";
 import {
@@ -25,7 +24,6 @@ export default function CameraScreen() {
   const [isActive, setIsActive] = useState(false);
   const [image, setImage] = useState(""); // 修正: 初期値を設定
   const [photo, setPhoto] = useState(null); // 修正: 型アノテーションを削除
-  const [flash, setFlash] = useState(false);
 
   useFocusEffect(
     useCallback(() => {
@@ -89,7 +87,6 @@ export default function CameraScreen() {
         style={StyleSheet.absoluteFill}
         device={device}
         photo={true}
-        photoQualityBalance="quality"
         isActive={isActive && !photo}
       />
 
@@ -132,7 +129,7 @@ export default function CameraScreen() {
               borderRadius: 75,
             }}
           />
-          <TouchableOpacity
+          <Pressable
             onPress={pickImage}
             style={{
               position: "absolute",
@@ -146,7 +143,7 @@ export default function CameraScreen() {
               justifyContent: "center",
               alignItems: "center",
             }}
-          ></TouchableOpacity>
+          />
         </>
       )}
     </View>
