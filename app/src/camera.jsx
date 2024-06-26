@@ -110,7 +110,21 @@ export default function CameraScreen() {
               backgroundColor: "rgba(0,0,0,0.40)",
             }}
           >
+            <Pressable
+            onPress={uploadPhoto}
+            style={{
+              position: "absolute",
+              alignSelf: "center",
+              bottom: 50,
+              width: 75,
+              height: 75,
+              backgroundColor: "red",
+              borderRadius: 75,
+            }}
+          />
+            {/*
             <Button title="Upload" onPress={uploadPhoto} />
+            */}
           </View>
         </>
       )}
