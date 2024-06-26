@@ -33,8 +33,6 @@ export default function CameraScreen() {
     }, [])
   );
 
-  console.log(cameraRef);
-
   useEffect(() => {
     if (!hasPermission) {
       requestPermission();
@@ -42,10 +40,9 @@ export default function CameraScreen() {
   }, [hasPermission]);
 
   const onTakePicturePressed = async () => {
-    // const camera = useRef < Camera > null;
     try {
       if (cameraRef.current == null) {
-        console.log("^^");
+        console.log("null");
       }
       const photo = await cameraRef.current.takePhoto();
       console.log(photo);
@@ -71,7 +68,7 @@ export default function CameraScreen() {
         style={StyleSheet.absoluteFill}
         device={device}
         photo={true}
-        photoQualityBalance="speed"
+        photoQualityBalance="quality"
         isActive={isActive}
       />
       <Pressable
