@@ -93,10 +93,11 @@ export default function CameraScreen() {
         isActive={isActive && !photo}
       />
 
-      {photo ? (
+      {photo && (
         <>
+          <Image source={{ uri: photo.path }} style={StyleSheet.absoluteFill} />
           <FontAwesome5
-            onPress={() => setPhoto(null)}
+            onPress={() => setPhoto(undefined)}
             name="arrow-left"
             size={25}
             color="red"
@@ -114,13 +115,10 @@ export default function CameraScreen() {
           >
             <Button title="Upload" onPress={uploadPhoto} />
           </View>
-          <Image
-            source={{ uri: `file://${photo.path}` }}
-            style={StyleSheet.absoluteFill}
-          />{" "}
-          {/* 修正: Image コンポーネントを使用 */}
         </>
-      ) : (
+      )}
+
+      {!photo && (
         <>
           <Pressable
             onPress={onTakePicturePressed}
@@ -148,9 +146,7 @@ export default function CameraScreen() {
               justifyContent: "center",
               alignItems: "center",
             }}
-          >
-            <Text style={{ color: "white" }}>Pick</Text>
-          </TouchableOpacity>
+          ></TouchableOpacity>
         </>
       )}
     </View>
