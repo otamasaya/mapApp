@@ -1,16 +1,24 @@
-import React, { useState, useEffect } from "react";
-import { SafeAreaView, View, Text, Dimensions, StyleSheet } from "react-native";
+import React, { useState, useEffect, forwardRef } from "react";
+import {
+  SafeAreaView,
+  View,
+  Text,
+  Button,
+  Dimensions,
+  StyleSheet,
+} from "react-native";
+import { Link } from "expo-router";
 
 import Geolocation from "@react-native-community/geolocation";
 import MapView, { Marker } from "react-native-maps";
 
-const { width, height } = Dimensions.get("window");
-const ASPECT_RATIO = width / height;
+const { width, height } = Dimensions.get("window");   //デバイスの幅と高さを取得する
+const ASPECT_RATIO = width / height;  //アスペクト比
 const LATITUDE_DELTA = 0.01;
-const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
+const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;  //地図の表示範囲
 
 const TrackUserMapView = () => {
-  const [position, setPosition] = useState({
+  const [position, setPosition] = useState({    //ユーザーの位置情報を保持
     latitude: 0,
     longitude: 0,
     accuracy: 0,
@@ -20,10 +28,37 @@ const TrackUserMapView = () => {
     speed: 0,
   });
 
-  const [error, setError] = useState(null);
-  const [initialRegion, setInitialRegion] = useState(null);
+  const [error, setError] = useState(null); //位置情報取得時に発生するエラーを管理する
+  const [initialRegion, setInitialRegion] = useState(null); //地図の初期表示範囲を保持します。
 
-  useEffect(() => {
+  const [modalVisible, setModalVisible] = useState(false); // モーダルの表示状態を管理するステート
+const [distance, setDistance] = useState(0);
+
+  const handleMarkerPress = (latitude, longitude) => {
+    const distance = calculateDistance(position.latitude, position.longitude, latitude, longitude);
+    setDistance(distance); // 距離を状態として更新
+    setModalVisible(true); // モーダルを表示
+  };
+
+
+  function toRadians(degrees) {
+    return degrees * Math.PI / 180;
+  }
+  
+  // 2点間の距離を計算する関数
+  function calculateDistance(lat1, lon1, lat2, lon2) {
+    const R = 6371; // 地球の半径（単位: km）
+    const dLat = toRadians(lat2 - lat1);
+    const dLon = toRadians(lon2 - lon1);
+    const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+              Math.cos(toRadians(lat1)) * Math.cos(toRadians(lat2)) *
+              Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    const distance = R * c * 1000; // 距離をメートルに変換するために1000を掛ける
+    return distance;
+  }
+
+  useEffect(() => {   //リアルタイムでユーザーの位置情報を監視し、更新
     const watchId = Geolocation.watchPosition(
       (position) => {
         setPosition(position.coords);
@@ -74,6 +109,43 @@ const TrackUserMapView = () => {
               <View style={styles.marker} />
             </View>
           </Marker>
+          <Marker
+            coordinate={{
+              latitude: 34.69455,
+              longitude: 135.19070,
+            }}
+            title="生田神社"
+            description="生田神社だヨ"
+            onPress={() => handleMarkerPress(34.694755595459455, 135.1906974779092)}
+          />
+          <Marker
+            coordinate={{
+              latitude: 34.69891700747491,
+              longitude: 135.19364647347652,
+            }}
+            title="神戸電子学生会館"
+            description="ここでアプリは作られた。"
+            onPress={() => handleMarkerPress(34.69891700747491, 135.19364647347652)} // マーカーが押されたときの処理
+            
+          >
+            {/*
+            <Image
+          source={require('./image/S__5201926.jpg')}
+          style={styles.markerImage}
+        />
+        */}
+            </Marker>
+            <Marker
+            coordinate={{
+              latitude: 34.68916215229272,
+              longitude: 135.19632682301685,
+            }}
+            title="東遊園地"
+            description="冬にはルミナリエが開催されています。"
+          >
+
+          </Marker>
+        
           {/* Debug 用に coords オブジェクトを表示
           <View style={styles.debugContainer}>
             <Text>{`coords: {`}</Text>
@@ -84,7 +156,11 @@ const TrackUserMapView = () => {
           </View> */}
         </MapView>
       )}
+      <Link href="/src/camera" asChild>
+        <Button title="Go to camera" />
+      </Link>
     </SafeAreaView>
+    
   );
 };
 
@@ -109,12 +185,26 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     backgroundColor: "#007AFF",
   },
+  spot: {
+    width: 20,
+    height: 20,
+    borderWidth: 3,
+    borderColor: "white",
+    borderRadius: 20 / 20,
+    overflow: "hidden",
+    backgroundColor: "#c71585",
+  },
   container: {
     width: "100%",
     height: "100%",
   },
   map: {
     flex: 1,
+  },
+  markerImage: {
+    width: 50,
+    height: 50,
+    resizeMode: 'contain',
   },
   debugContainer: {
     backgroundColor: "#fff",
@@ -135,6 +225,34 @@ const styles = StyleSheet.create({
   errorText: {
     color: "#fff",
     textAlign: "center",
+  },
+  markerImage: {
+    width: 50,
+    height: 50,
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
+  modalView: {
+    backgroundColor: 'white',
+    padding: 20,
+    borderRadius: 10,
+    alignItems: 'center',
+    elevation: 5,
+  },
+  closeButton: {
+    marginTop: 20,
+    backgroundColor: '#2196F3',
+    padding: 10,
+    borderRadius: 5,
+  },
+  buttonText: {
+    color: 'white',
+    fontWeight: 'bold',
+    textAlign: 'center',
   },
 });
 
