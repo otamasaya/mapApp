@@ -119,10 +119,12 @@ const [distance, setDistance] = useState(0);
             onPress={() => handleMarkerPress(34.69891700747491, 135.19364647347652)} // マーカーが押されたときの処理
             
           >
+            {/*
             <Image
           source={require('./image/S__5201926.jpg')}
           style={styles.markerImage}
         />
+            */}
             </Marker>
             <Marker
             coordinate={{
@@ -157,9 +159,11 @@ const [distance, setDistance] = useState(0);
       ><View style={styles.centeredView}>
       <View style={styles.modalView}>
         <Text>{distance.toFixed(2)}メートル</Text>
+        {/*
         <Image 
         source={require('./image/S__5201926.jpg')}
         style={styles.markerImage}/>
+        */}
         <TouchableOpacity
           style={styles.closeButton}
           onPress={() => setModalVisible(false)}
