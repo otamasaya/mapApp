@@ -107,6 +107,7 @@ const [distance, setDistance] = useState(0);
             }}
             title="生田神社"
             description="生田神社だヨ"
+            onPress={() => handleMarkerPress(34.694755595459455, 135.1906974779092)}
           />
           <Marker
             coordinate={{
