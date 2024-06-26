@@ -82,6 +82,40 @@ const TrackUserMapView = () => {
               <View style={styles.marker} />
             </View>
           </Marker>
+          <Marker
+            coordinate={{
+              latitude: 34.69455,
+              longitude: 135.19070,
+            }}
+            title="生田神社"
+            description="生田神社だヨ"
+          />
+          <Marker
+            coordinate={{
+              latitude: 34.69891700747491,
+              longitude: 135.19364647347652,
+            }}
+            title="神戸電子学生会館"
+            description="ここでアプリは作られた。"
+          >
+            {/*
+            <Image
+          source={require('./image/S__5201926.jpg')}
+          style={styles.markerImage}
+        />
+        */}
+            </Marker>
+            <Marker
+            coordinate={{
+              latitude: 34.68916215229272,
+              longitude: 135.19632682301685,
+            }}
+            title="東遊園地"
+            description="冬にはルミナリエが開催されています。"
+          >
+
+          </Marker>
+        
           {/* Debug 用に coords オブジェクトを表示
           <View style={styles.debugContainer}>
             <Text>{`coords: {`}</Text>
@@ -120,12 +154,26 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     backgroundColor: "#007AFF",
   },
+  spot: {
+    width: 20,
+    height: 20,
+    borderWidth: 3,
+    borderColor: "white",
+    borderRadius: 20 / 20,
+    overflow: "hidden",
+    backgroundColor: "#c71585",
+  },
   container: {
     width: "100%",
     height: "100%",
   },
   map: {
     flex: 1,
+  },
+  markerImage: {
+    width: 50,
+    height: 50,
+    resizeMode: 'contain',
   },
   debugContainer: {
     backgroundColor: "#fff",
