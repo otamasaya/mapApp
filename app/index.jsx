@@ -7,6 +7,7 @@ import {
   Modal,
   Button,
   Dimensions,
+  TouchableOpacity,
   StyleSheet,
 } from "react-native";
 import { Link } from "expo-router";
