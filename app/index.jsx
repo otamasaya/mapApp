@@ -4,6 +4,7 @@ import {
   SafeAreaView,
   View,
   Text,
+  Modal,
   Button,
   Dimensions,
   StyleSheet,
