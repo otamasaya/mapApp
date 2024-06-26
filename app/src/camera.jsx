@@ -15,22 +15,21 @@ import {
 } from "react-native-vision-camera";
 import * as ImagePicker from "expo-image-picker";
 import { FontAwesome5 } from "@expo/vector-icons";
-import { Button } from "react-native-web";
+import storage from "@react-native-firebase/storage";
 
 export default function CameraScreen() {
   const cameraRef = useRef(null);
   const device = useCameraDevice("back");
   const { hasPermission, requestPermission } = useCameraPermission();
   const [isActive, setIsActive] = useState(false);
-  const [image, setImage] = useState(""); // 修正: 初期値を設定
-  const [photo, setPhoto] = useState(null); // 修正: 型アノテーションを削除
+  const [image, setImage] = useState("");
+  const [photo, setPhoto] = useState(null);
+  const reference = storage();
 
   useFocusEffect(
     useCallback(() => {
-      console.log("on duty");
       setIsActive(true);
       return () => {
-        console.log("navigating away");
         setIsActive(false);
       };
     }, [])
@@ -73,8 +72,12 @@ export default function CameraScreen() {
       aspect: [9, 16],
       quality: 1,
     });
+
     if (!result.canceled) {
-      setImage(result.uri);
+      const randomNumber = Math.floor(Math.random() * 100) + 1;
+      const imagePath =
+        "photo/image-" + new Date().getTime().toString() + randomNumber;
+      await reference.ref(imagePath).putFile(result.assets[0].uri);
     }
   }
 
@@ -111,17 +114,17 @@ export default function CameraScreen() {
             }}
           >
             <Pressable
-            onPress={uploadPhoto}
-            style={{
-              position: "absolute",
-              alignSelf: "center",
-              bottom: 50,
-              width: 75,
-              height: 75,
-              backgroundColor: "red",
-              borderRadius: 75,
-            }}
-          />
+              onPress={uploadPhoto}
+              style={{
+                position: "absolute",
+                alignSelf: "center",
+                bottom: 50,
+                width: 75,
+                height: 75,
+                backgroundColor: "red",
+                borderRadius: 75,
+              }}
+            />
             {/*
             <Button title="Upload" onPress={uploadPhoto} />
             */}
