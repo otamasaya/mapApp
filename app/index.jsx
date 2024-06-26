@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { SafeAreaView, View, Text, Dimensions, StyleSheet,Image } from "react-native";
 
 import Geolocation from "@react-native-community/geolocation";
-import MapView, { Marker } from "react-native-maps";
+import MapView, { Callout, Marker } from "react-native-maps";
 
 const { width, height } = Dimensions.get("window");
 const ASPECT_RATIO = width / height;
@@ -74,14 +74,26 @@ const TrackUserMapView = () => {
               <View style={styles.marker} />
             </View>
           </Marker>
+
+
           <Marker
             coordinate={{
               latitude: 34.69455,
               longitude: 135.19070,
             }}
-            title="生田神社"
-            description="生田神社だヨ"
-          />
+            >
+              <Callout>
+                <View style={styles.calloutView}>
+                  <Text style={styles.calloutTitle}>
+                    生田神社
+                  </Text>
+                  <Image
+                  source={require('./image/S__5201926.jpg') }style={styles.calloutImage}/>
+                </View>
+              </Callout>
+        </Marker>
+
+
           <Marker
             coordinate={{
               latitude: 34.69891700747491,
@@ -111,6 +123,27 @@ const TrackUserMapView = () => {
 };
 
 const styles = StyleSheet.create({
+
+  absoluteFillObject:{
+    flex: 1
+  },
+
+  calloutView: {
+    width: 200,
+    padding: 5,
+    backgroundColor: 'white',
+  },
+  calloutTitle: {
+    fontWeight: 'bold',
+    fontSize: 16,
+    marginBottom: 5,
+  },
+  calloutImage: {
+    width: 150,
+    height: 100,
+    marginBottom: 5,
+  },
+
   radius: {
     width: 50,
     height: 50,
