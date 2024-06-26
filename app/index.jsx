@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, forwardRef } from "react";
 import {
   SafeAreaView,
@@ -8,7 +9,6 @@ import {
   StyleSheet,
 } from "react-native";
 import { Link } from "expo-router";
-
 import Geolocation from "@react-native-community/geolocation";
 import MapView, { Marker } from "react-native-maps";
 
@@ -30,6 +30,7 @@ const TrackUserMapView = () => {
 
   const [error, setError] = useState(null); //位置情報取得時に発生するエラーを管理する
   const [initialRegion, setInitialRegion] = useState(null); //地図の初期表示範囲を保持します。
+
 
   const [modalVisible, setModalVisible] = useState(false); // モーダルの表示状態を管理するステート
 const [distance, setDistance] = useState(0);
@@ -57,6 +58,7 @@ const [distance, setDistance] = useState(0);
     const distance = R * c * 1000; // 距離をメートルに変換するために1000を掛ける
     return distance;
   }
+
 
   useEffect(() => {   //リアルタイムでユーザーの位置情報を監視し、更新
     const watchId = Geolocation.watchPosition(
@@ -133,7 +135,9 @@ const [distance, setDistance] = useState(0);
           source={require('./image/S__5201926.jpg')}
           style={styles.markerImage}
         />
-        */}
+
+            */}
+
             </Marker>
             <Marker
             coordinate={{
@@ -155,7 +159,33 @@ const [distance, setDistance] = useState(0);
             <Text>{`}`}</Text>
           </View> */}
         </MapView>
+        
       )}
+
+
+    <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          setModalVisible(false);
+        }}
+      ><View style={styles.centeredView}>
+      <View style={styles.modalView}>
+        <Text>{distance.toFixed(2)}メートル</Text>
+        {/*
+        <Image 
+        source={require('./image/S__5201926.jpg')}
+        style={styles.markerImage}/>
+        */}
+        <TouchableOpacity
+          style={styles.closeButton}
+          onPress={() => setModalVisible(false)}
+        >
+          <Text style={styles.buttonText}>閉じる</Text>
+        </TouchableOpacity>
+      </View>
+    </View></Modal>
       <Link href="/src/camera" asChild>
         <Button title="Go to camera" />
       </Link>
