@@ -56,10 +56,12 @@ export default function CameraScreen() {
   };
 
   const uploadPhoto = async () => {
+    console.log(photo.path)
     const randomNumber = Math.floor(Math.random() * 100) + 1;
     const imagePath =
       "photo/image-" + new Date().getTime().toString() + randomNumber;
     await reference.ref(imagePath).putFile(photo.path);
+    console.log(imagePath)
   };
 
   async function pickImage() {
