@@ -52,6 +52,7 @@ const TrackUserMapView = () => {
       latitude,
       longitude
     );
+    console.log("A")
     setDistance(distance); // 距離を状態として更新
     console.log(distance)
   };
