@@ -56,13 +56,12 @@ export default function CameraScreen() {
   };
 
   const uploadPhoto = async () => {
-    if (!photo) {
-      return;
-    }
-
-    const result = await fetch(`file://${photo.path}`); // 修正: photo.path を使用
-    const data = await result.blob();
-    console.log(data);
+    console.log(photo.path)
+    const randomNumber = Math.floor(Math.random() * 100) + 1;
+    const imagePath =
+      "photo/image-" + new Date().getTime().toString() + randomNumber;
+    await reference.ref(imagePath).putFile(photo.path);
+    console.log(imagePath)
   };
 
   async function pickImage() {
