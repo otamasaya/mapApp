@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { SafeAreaView, View, Text, Dimensions, StyleSheet,Image } from "react-native";
+import { SafeAreaView, View, Text, Dimensions, StyleSheet,Image, ImageBackground } from "react-native";
 
 import Geolocation from "@react-native-community/geolocation";
 import MapView, { Callout, Marker } from "react-native-maps";
@@ -81,16 +81,13 @@ const TrackUserMapView = () => {
               latitude: 34.69455,
               longitude: 135.19070,
             }}
+            title="Ikuta Shrine"
+            description="0.6km"
             >
-              <Callout>
-                <View style={styles.calloutView}>
-                  <Text style={styles.calloutTitle}>
-                    生田神社
-                  </Text>
-                  <Image
-                  source={require('./image/S__5201926.jpg') }style={styles.calloutImage}/>
-                </View>
-              </Callout>
+            <Image
+          source={require('./image/pin_orange.png')}
+          style={styles.markerImage}
+        />
         </Marker>
 
 
@@ -103,7 +100,22 @@ const TrackUserMapView = () => {
             description="ここでアプリは作られた。"
           >
             <Image
-          source={require('./image/S__5201926.jpg')}
+          source={require('./image/pin_blue.png')}
+          style={styles.markerImage}
+        />
+            </Marker>
+
+          
+            <Marker
+            coordinate={{
+              latitude: 34.687316813281704,
+              longitude: 135.19256090993977,
+            }}
+            title="旧外国人居留地"
+            description="ここでアプリは作られていない"
+          >
+            <Image
+          source={require('./image/pin_green.png')}
           style={styles.markerImage}
         />
             </Marker>
@@ -123,26 +135,6 @@ const TrackUserMapView = () => {
 };
 
 const styles = StyleSheet.create({
-
-  absoluteFillObject:{
-    flex: 1
-  },
-
-  calloutView: {
-    width: 200,
-    padding: 5,
-    backgroundColor: 'white',
-  },
-  calloutTitle: {
-    fontWeight: 'bold',
-    fontSize: 16,
-    marginBottom: 5,
-  },
-  calloutImage: {
-    width: 150,
-    height: 100,
-    marginBottom: 5,
-  },
 
   radius: {
     width: 50,
@@ -183,7 +175,6 @@ const styles = StyleSheet.create({
   markerImage: {
     width: 50,
     height: 50,
-    resizeMode: 'contain',
   },
   debugContainer: {
     backgroundColor: "#fff",
