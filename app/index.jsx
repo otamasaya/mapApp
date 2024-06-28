@@ -57,6 +57,7 @@ const TrackUserMapView = () => {
         <MapView
           key={`${initialRegion.latitude}-${initialRegion.longitude}`}
           style={StyleSheet.absoluteFillObject}
+          customMapStyle={customMapStyle}
           region={{
             latitude: position.latitude,
             longitude: position.longitude,
@@ -64,6 +65,7 @@ const TrackUserMapView = () => {
             longitudeDelta: LONGITUDE_DELTA,
           }}
         >
+
           <Marker
             coordinate={{
               latitude: position.latitude,
@@ -134,7 +136,140 @@ const TrackUserMapView = () => {
   );
 };
 
+const customMapStyle = [  
+{
+  "featureType": "poi.business",// ビジネス（ビル、店舗など）のラベルを非表示
+  "elementType": "labels",
+  "stylers": [
+    {
+      "visibility": "off"
+    }
+  ]
+},
+{
+  "featureType": "poi.business",// ビジネス（ビル、店舗など）のアイコンを非表示
+  "elementType": "labels.icon",
+  "stylers": [
+    {
+      "visibility": "off"
+    }
+  ]
+},
+{
+  "featureType": "poi.attraction", // 観光スポットのラベルを非表示
+  "elementType": "labels",
+  "stylers": [
+    {
+      "visibility": "off"
+    }
+  ]
+},
+{
+  "featureType": "poi.government", // 政府機関のラベルを非表示
+  "elementType": "labels",
+  "stylers": [
+    {
+      "visibility": "off"
+    }
+  ]
+},
+{
+  "featureType": "poi.medical", // 医療施設のラベルを非表示
+  "elementType": "labels",
+  "stylers": [
+    {
+      "visibility": "off"
+    }
+  ]
+},
+{
+  "featureType": "poi.park", // 公園のラベルを非表示
+  "elementType": "labels",
+  "stylers": [
+    {
+      "visibility": "off"
+    }
+  ]
+},
+{
+  "featureType": "poi.place_of_worship", // 宗教施設のラベルを非表示
+  "elementType": "labels",
+  "stylers": [
+    {
+      "visibility": "off"
+    }
+  ]
+},
+{
+  "featureType": "poi.school", // 学校のラベルを非表示
+  "elementType": "labels",
+  "stylers": [
+    {
+      "visibility": "off"
+    }
+  ]
+},
+{
+  "featureType": "poi.sports_complex", // スポーツ施設のラベルを非表示
+  "elementType": "labels",
+  "stylers": [
+    {
+      "visibility": "off"
+    }
+  ]
+},
+{
+  "featureType": "road", // 道路の号線表示を非表示
+  "elementType": "labels",
+  "stylers": [
+    {
+      "visibility": "off"
+    }
+  ]
+},{
+  "featureType": "administrative.locality", // 町、村、区のラベルを非表示
+  "elementType": "labels.text.fill",
+  "stylers": [
+    {
+      "visibility": "off"
+    }
+  ]
+},
+{
+  "featureType": "administrative.locality", // 町、村、区のラベルのアウトラインを非表示
+  "elementType": "labels.text.stroke",
+  "stylers": [
+    {
+      "visibility": "off"
+    }
+  ]
+},
+{
+  "featureType": "administrative.neighborhood", // 住所（丁目）のラベルを非表示
+  "elementType": "labels.text.fill",
+  "stylers": [
+    {
+      "visibility": "off"
+    }
+  ]
+},
+{
+  "featureType": "administrative.neighborhood",    // 住所（丁目）のラベルのアウトラインを非表示
+  "elementType": "labels.text.stroke",
+  "stylers": [
+    {
+      "visibility": "off"
+    }
+  ]
+}
+];
+
+
 const styles = StyleSheet.create({
+
+  absoluteFillObject:{
+    flex:1
+  },
 
   radius: {
     width: 50,
