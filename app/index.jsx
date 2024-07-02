@@ -87,7 +87,7 @@ const TrackUserMapView = () => {
             description="0.6km"
             >
             <Image
-          source={require('./image/pin_orange.png')}
+          source={require('./image/pin_blue.png')}
           style={styles.markerImage}
         />
         </Marker>
@@ -102,7 +102,7 @@ const TrackUserMapView = () => {
             description="ここでアプリは作られた。"
           >
             <Image
-          source={require('./image/pin_blue.png')}
+          source={require('./image/pin_orange.png')}
           style={styles.markerImage}
         />
             </Marker>
@@ -261,7 +261,107 @@ const customMapStyle = [
       "visibility": "off"
     }
   ]
-}
+},
+
+//ここから地図の色
+
+{
+  "featureType": "landscape.man_made",  //地面の色
+  "elementType": "geometry",
+  "stylers": [
+    {
+      "color": "#bee0c2" 
+    }
+  ]
+},
+{
+    "featureType": "road",  //  一般道の色
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#404040"
+      }
+    ]
+  },
+  {
+    "featureType": "road",  // 一般道の枠線
+    "elementType": "geometry.stroke",
+    "stylers": [
+      {
+        "color": "#f0f0f0",
+        "weight": 3
+      }
+    ]
+  },
+
+
+  {
+    "featureType": "road.highway",// 高速道路の色
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#808080"
+      }
+    ]
+  },
+  {
+    "featureType": "road.highway",// 高速道路の枠線の色
+    "elementType": "geometry.stroke",
+    "stylers": [
+      {
+        "color": "#fcfcfc",
+        "weight": 2
+      }
+    ]
+  },
+  {
+    "featureType": "landscape.natural",// 自然地形の色
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#37a34a" 
+      }
+    ]
+  },
+  {
+    "featureType": "water",
+    "elementType": "geometry.fill",
+    "stylers": [
+      {
+        "color": "#3355cbb"  // 水の色を青色に変更
+      }
+    ]
+  },
+  {
+    
+    "featureType": "poi.park",// 公園の色
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#79c06e"
+      }
+    ]
+  },
+  {
+    "featureType": "transit.line",// 鉄道の色
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#0099ff"  
+      }
+    ]
+  },
+  {
+    "featureType": "transit.line",// 鉄道の枠線の太さ
+    "elementType": "geometry.stroke",
+    "stylers": [
+      {
+        "color": "#ffffff" , 
+        "weight": 1  
+      },
+
+    ]
+  }
 ];
 
 
