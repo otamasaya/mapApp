@@ -319,7 +319,7 @@ const customMapStyle = [
     "elementType": "geometry",
     "stylers": [
       {
-        "color": "#37a34a" 
+        "color": "#57c36a" 
       }
     ]
   },
@@ -328,7 +328,7 @@ const customMapStyle = [
     "elementType": "geometry.fill",
     "stylers": [
       {
-        "color": "#3355cbb"  // 水の色を青色に変更
+        "color": "#5375cd"  // 水の色を青色に変更
       }
     ]
   },
@@ -338,7 +338,7 @@ const customMapStyle = [
     "elementType": "geometry",
     "stylers": [
       {
-        "color": "#79c06e"
+        "color": "#99d08e"
       }
     ]
   },
@@ -347,7 +347,7 @@ const customMapStyle = [
     "elementType": "geometry",
     "stylers": [
       {
-        "color": "#0099ff"  
+        "color": "#11bbFF"  
       }
     ]
   },
