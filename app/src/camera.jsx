@@ -12,6 +12,7 @@ import {
   useCameraDevice,
   Camera,
   PhotoFile,
+  useCameraFormat,
 } from "react-native-vision-camera";
 import * as ImagePicker from "expo-image-picker";
 import { FontAwesome5 } from "@expo/vector-icons";
@@ -25,6 +26,16 @@ export default function CameraScreen() {
   const [image, setImage] = useState("");
   const [photo, setPhoto] = useState(null);
   const reference = storage();
+  //★
+  // const format = useCameraFormat(device, [
+  //   { photoAspectRatio: 3 / 4 },
+  //   { photoResolution: { width: 960, height: 1280 } },
+  // ]);
+  //★
+  const format = useCameraFormat(device, [
+    { photoAspectRatio: 4 / 3 },
+    { photoResolution: { width: 1280, height: 960 } },
+  ]);
 
   useFocusEffect(
     useCallback(() => {
@@ -56,12 +67,12 @@ export default function CameraScreen() {
   };
 
   const uploadPhoto = async () => {
-    console.log(photo.path)
+    console.log(photo.path);
     const randomNumber = Math.floor(Math.random() * 100) + 1;
     const imagePath =
       "photo/image-" + new Date().getTime().toString() + randomNumber;
     await reference.ref(imagePath).putFile(photo.path);
-    console.log(imagePath)
+    console.log(imagePath);
   };
 
   async function pickImage() {
@@ -86,9 +97,10 @@ export default function CameraScreen() {
 
       <Camera
         ref={cameraRef}
-        style={StyleSheet.absoluteFill}
+        style={styles.container}
         device={device}
         photo={true}
+        format={format}
         isActive={isActive && !photo}
       />
 
@@ -165,3 +177,15 @@ export default function CameraScreen() {
     </View>
   );
 }
+
+// スタイル
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    // position: "fixed",
+    // maxWidth: "auto",
+    // maxHeight: "auto",
+    // top: 50,
+    // bottom: 50,
+  },
+});
