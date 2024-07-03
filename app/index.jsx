@@ -35,12 +35,12 @@ const TrackUserMapView = () => {
 
   const [modalVisible, setModalVisible] = useState(false); // モーダルの表示状態を管理するステート
   const [distance, setDistance] = useState(0);
-  const [image,setimage] = useState('')
+  const [image,setimage] = useState('./image/pin_blue.png')
 
   const YourComponent = () => {
     useEffect(() => {
       // コンポーネントがマウントされたときに実行する処理
-      handleMarkerPress(34.69455, 135.1907); // 適切な値を渡す
+      handleMarkerPress(34.69891700747491, 135.19364647347652); // 適切な値を渡す
   
       // 他の初期化処理もここに書くことができます
     }, []);
@@ -55,8 +55,9 @@ const TrackUserMapView = () => {
     );
     console.log("A")
     setDistance(distance); // 距離を状態として更新
-    if(distance){
-      image = ''
+    console.log(image)
+    if(distance < 150){
+      setimage('./image/pin_green.png')
     }
     console.log(distance)
   };
@@ -155,10 +156,7 @@ const TrackUserMapView = () => {
             //   handleMarkerPress(34.69891700747491, 135.19364647347652)
             // } // マーカーが押されたときの処理
           >
-             <Image
-          source={require(image)}
-          style={styles.markerImage}
-        />
+            
           </Marker>
           <Marker
             coordinate={{
