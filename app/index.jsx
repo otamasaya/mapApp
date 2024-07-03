@@ -297,7 +297,7 @@ const customMapStyle = [
     "stylers": [
       {
         "color": "#f0f0f0",
-        "weight": 2
+        "weight": 1
       }
     ]
   },
@@ -316,7 +316,7 @@ const customMapStyle = [
     "stylers": [
       {
         "color": "#fcfcfc",
-        "weight": 2
+        "weight": 1
       }
     ]
   },
@@ -358,7 +358,25 @@ const customMapStyle = [
       },
 
     ]
-  }
+  },
+  {
+    "featureType": "poi.school",// 教育機関の色
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#ffeecc"
+      }
+    ]
+  },{
+    // 医療機関の背景色を指定（例: 薄いピンク色）
+    "featureType": "poi.medical",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#ffdddd"
+      }
+    ]
+  },
 ];
 
 
