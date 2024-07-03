@@ -117,7 +117,7 @@ const TrackUserMapView = () => {
             description="ここでアプリは作られていない"
           >
             <Image
-          source={require('./image/pin_green.png')}
+          source={require('./image/pin_yellow.png')}
           style={styles.markerImage}
         />
             </Marker>
