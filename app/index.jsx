@@ -35,6 +35,7 @@ const TrackUserMapView = () => {
 
   const [modalVisible, setModalVisible] = useState(false); // モーダルの表示状態を管理するステート
   const [distance, setDistance] = useState(0);
+  const [image,setimage] = useState()
 
   const YourComponent = () => {
     useEffect(() => {
