@@ -264,13 +264,21 @@ const customMapStyle = [
 },
 
 //ここから地図の色
-
+  {
+    "featureType": "landscape.natural",// 自然地形の色
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#33aa33" 
+      }
+    ]
+  },
 {
   "featureType": "landscape.man_made",  //地面の色
   "elementType": "geometry",
   "stylers": [
     {
-      "color": "#bee0c2" 
+      "color": "#e0ffe0" 
     }
   ]
 },
@@ -289,12 +297,10 @@ const customMapStyle = [
     "stylers": [
       {
         "color": "#f0f0f0",
-        "weight": 3
+        "weight": 2
       }
     ]
   },
-
-
   {
     "featureType": "road.highway",// 高速道路の色
     "elementType": "geometry",
@@ -315,15 +321,6 @@ const customMapStyle = [
     ]
   },
   {
-    "featureType": "landscape.natural",// 自然地形の色
-    "elementType": "geometry",
-    "stylers": [
-      {
-        "color": "#57c36a" 
-      }
-    ]
-  },
-  {
     "featureType": "water",
     "elementType": "geometry.fill",
     "stylers": [
@@ -338,7 +335,7 @@ const customMapStyle = [
     "elementType": "geometry",
     "stylers": [
       {
-        "color": "#99d08e"
+        "color": "#99dd66"
       }
     ]
   },
