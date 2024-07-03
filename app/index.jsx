@@ -35,7 +35,7 @@ const TrackUserMapView = () => {
 
   const [modalVisible, setModalVisible] = useState(false); // モーダルの表示状態を管理するステート
   const [distance, setDistance] = useState(0);
-  const [image,setimage] = useState()
+  const [image,setimage] = useState('')
 
   const YourComponent = () => {
     useEffect(() => {
@@ -55,6 +55,9 @@ const TrackUserMapView = () => {
     );
     console.log("A")
     setDistance(distance); // 距離を状態として更新
+    if(distance){
+      image = ''
+    }
     console.log(distance)
   };
 
@@ -151,7 +154,12 @@ const TrackUserMapView = () => {
             // onPress={() =>
             //   handleMarkerPress(34.69891700747491, 135.19364647347652)
             // } // マーカーが押されたときの処理
-          ></Marker>
+          >
+             <Image
+          source={require(image)}
+          style={styles.markerImage}
+        />
+          </Marker>
           <Marker
             coordinate={{
               latitude: 34.68916215229272,
