@@ -269,7 +269,7 @@ const customMapStyle = [
     "elementType": "geometry",
     "stylers": [
       {
-        "color": "#33aa33" 
+        "color": "#55cc55" 
       }
     ]
   },
@@ -325,7 +325,7 @@ const customMapStyle = [
     "elementType": "geometry.fill",
     "stylers": [
       {
-        "color": "#5375cd"  // 水の色を青色に変更
+        "color": "#6699dd"  // 水の色を青色に変更
       }
     ]
   },
