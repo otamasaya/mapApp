@@ -124,20 +124,18 @@ export default function CameraScreen() {
               backgroundColor: "rgba(0,0,0,0.40)",
             }}
           >
-            <Link>
-              <Pressable
-                onPress={uploadPhoto}
-                style={{
-                  position: "absolute",
-                  alignSelf: "center",
-                  bottom: 50,
-                  width: 75,
-                  height: 75,
-                  backgroundColor: "red",
-                  borderRadius: 75,
-                }}
-              />
-            </Link>
+            <Pressable
+              onPress={uploadPhoto}
+              style={{
+                position: "absolute",
+                alignSelf: "center",
+                bottom: 50,
+                width: 75,
+                height: 75,
+                backgroundColor: "red",
+                borderRadius: 75,
+              }}
+            />
             {/*
             <Button title="Upload" onPress={uploadPhoto} />
             */}
@@ -158,7 +156,9 @@ export default function CameraScreen() {
               backgroundColor: "white",
               borderRadius: 75,
             }}
-          />
+          >
+            <Link href="/edit"></Link>
+          </Pressable>
           <Pressable
             onPress={pickImage}
             style={{
