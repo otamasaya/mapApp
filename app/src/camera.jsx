@@ -34,6 +34,7 @@ export default function CameraScreen() {
   //★
   const format = useCameraFormat(device, [
         { photoAspectRatio: 4/3 },
+        {  photoResolution: {width: 2240, height: 1680 }} 
 
   ]);
 
