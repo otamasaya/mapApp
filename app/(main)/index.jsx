@@ -177,7 +177,7 @@ const TrackUserMapView = () => {
           </View>
         </View>
       </Modal>
-      <Link href="/src/camera" asChild>
+      <Link href="/camera" asChild>
         <Pressable
           style={{
             position: "absolute",

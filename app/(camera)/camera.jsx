@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   Image,
 } from "react-native";
-import { Stack, useFocusEffect } from "expo-router";
+import { Stack, useFocusEffect, Link } from "expo-router";
 import {
   useCameraPermission,
   useCameraDevice,
@@ -124,18 +124,20 @@ export default function CameraScreen() {
               backgroundColor: "rgba(0,0,0,0.40)",
             }}
           >
-            <Pressable
-              onPress={uploadPhoto}
-              style={{
-                position: "absolute",
-                alignSelf: "center",
-                bottom: 50,
-                width: 75,
-                height: 75,
-                backgroundColor: "red",
-                borderRadius: 75,
-              }}
-            />
+            <Link>
+              <Pressable
+                onPress={uploadPhoto}
+                style={{
+                  position: "absolute",
+                  alignSelf: "center",
+                  bottom: 50,
+                  width: 75,
+                  height: 75,
+                  backgroundColor: "red",
+                  borderRadius: 75,
+                }}
+              />
+            </Link>
             {/*
             <Button title="Upload" onPress={uploadPhoto} />
             */}
