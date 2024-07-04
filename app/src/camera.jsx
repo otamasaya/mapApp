@@ -181,7 +181,7 @@ export default function CameraScreen() {
 // スタイル
 const styles = StyleSheet.create({
   container: {
-    flex: 0.8,
+    flex: 1,
     // position: "fixed",
     // maxWidth: "auto",
     // maxHeight: "auto",
