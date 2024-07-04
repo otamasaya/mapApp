@@ -33,8 +33,8 @@ export default function CameraScreen() {
   // ]);
   //★
   const format = useCameraFormat(device, [
-    { photoAspectRatio: 4 / 3 },
-    { photoResolution: { width: 1280, height: 960 } },
+        { photoAspectRatio: 4/3 },
+
   ]);
 
   useFocusEffect(
@@ -92,12 +92,12 @@ export default function CameraScreen() {
   }
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={styles.container}>
       <Stack.Screen options={{ headerShown: false }} />
 
       <Camera
         ref={cameraRef}
-        style={styles.container}
+        style={styles.camera}
         device={device}
         photo={true}
         format={format}
@@ -182,10 +182,11 @@ export default function CameraScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // position: "fixed",
-    // maxWidth: "auto",
-    // maxHeight: "auto",
-    // top: 50,
-    // bottom: 50,
+    justifyContent: 'center', // 垂直方向の中央揃え
+    alignItems: 'center', // 水平方向の中央揃え
+  },
+  camera: {
+    flex: 0.65,
+    aspectRatio: 3/4, // アスペクト比を設定する（例: 3:4）
   },
 });
