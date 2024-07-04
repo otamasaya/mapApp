@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   Image,
 } from "react-native";
-import { Stack, useFocusEffect, Link } from "expo-router";
+import { Stack, useFocusEffect, router } from "expo-router";
 import {
   useCameraPermission,
   useCameraDevice,
@@ -26,12 +26,7 @@ export default function CameraScreen() {
   const [image, setImage] = useState("");
   const [photo, setPhoto] = useState(null);
   const reference = storage();
-  //★
-  // const format = useCameraFormat(device, [
-  //   { photoAspectRatio: 3 / 4 },
-  //   { photoResolution: { width: 960, height: 1280 } },
-  // ]);
-  //★
+
   const format = useCameraFormat(device, [
     { photoAspectRatio: 4 / 3 },
     { photoResolution: { width: 1280, height: 960 } },
@@ -73,6 +68,7 @@ export default function CameraScreen() {
       "photo/image-" + new Date().getTime().toString() + randomNumber;
     await reference.ref(imagePath).putFile(photo.path);
     console.log(imagePath);
+    router.replace("/index");
   };
 
   async function pickImage() {
@@ -88,6 +84,7 @@ export default function CameraScreen() {
       const imagePath =
         "photo/image-" + new Date().getTime().toString() + randomNumber;
       await reference.ref(imagePath).putFile(result.assets[0].uri);
+      router.replace("/index");
     }
   }
 
@@ -156,9 +153,7 @@ export default function CameraScreen() {
               backgroundColor: "white",
               borderRadius: 75,
             }}
-          >
-            <Link href="/edit"></Link>
-          </Pressable>
+          ></Pressable>
           <Pressable
             onPress={pickImage}
             style={{
