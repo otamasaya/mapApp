@@ -305,7 +305,7 @@ const customMapStyle = [
     "elementType": "geometry.stroke",
     "stylers": [
       {
-        "color": "#f0f0f0",
+        "color": "#fcfcfc",
         "weight": 1
       }
     ]
