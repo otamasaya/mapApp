@@ -75,7 +75,7 @@ export default function CameraScreen() {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsEditing: true,
-      aspect: [9, 16],
+      aspect: [3, 4],
       quality: 1,
     });
 
