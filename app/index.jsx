@@ -269,7 +269,7 @@ const customMapStyle = [
     "elementType": "geometry",
     "stylers": [
       {
-        "color": "#55cc55" 
+        "color": "#66bb66" 
       }
     ]
   },
@@ -282,6 +282,15 @@ const customMapStyle = [
     }
   ]
 },
+  {
+    "featureType": "water",
+    "elementType": "geometry.fill",
+    "stylers": [
+      {
+        "color": "#6699ff"  // 水の色を青色に変更
+      }
+    ]
+  },
 {
     "featureType": "road",  //  一般道の色
     "elementType": "geometry",
@@ -321,15 +330,6 @@ const customMapStyle = [
     ]
   },
   {
-    "featureType": "water",
-    "elementType": "geometry.fill",
-    "stylers": [
-      {
-        "color": "#6699dd"  // 水の色を青色に変更
-      }
-    ]
-  },
-  {
     
     "featureType": "poi.park",// 公園の色
     "elementType": "geometry",
@@ -344,7 +344,7 @@ const customMapStyle = [
     "elementType": "geometry",
     "stylers": [
       {
-        "color": "#11bbFF"  
+        "color": "#33ccff"  
       }
     ]
   },
