@@ -24,18 +24,24 @@ import Reanimated, {
   useSharedValue,
   interpolate,
   Extrapolation,
+  runOnJS,
+  // addWhitelistedNativeProps,
 } from "react-native-reanimated"; //<-install 必要
 import {
   Gesture,
   GestureDetector,
   GestureHandlerRootView,
 } from "react-native-gesture-handler"; //<-install 必要
-
+//Exposure
 //zoom
-Reanimated.addWhitelistedNativeProps({
+const ReanimatedCamera = Reanimated.createAnimatedComponent(Camera);
+addWhitelistedNativeProps({
+  exposure: true,
   zoom: true,
 });
-const ReanimatedCamera = Reanimated.createAnimatedComponent(Camera);
+// Reanimated.addWhitelistedNativeProps({
+//   zoom: true, // ここにはネイティブプロパティとしてのみ追加する
+// });
 
 export default function CameraScreen() {
   const cameraRef = useRef(null);
@@ -50,7 +56,7 @@ export default function CameraScreen() {
   const zoom = useSharedValue(device.neutralZoom);
   //zoom
   const zoomOffset = useSharedValue(0);
-  const gesture = Gesture.Pinch()
+  const pinchGesture = Gesture.Pinch()
     .onBegin(() => {
       zoomOffset.value = zoom.value;
     })
@@ -63,6 +69,41 @@ export default function CameraScreen() {
         Extrapolation.CLAMP
       );
     });
+
+  //focus
+  const focus = useCallback((point) => {
+    const c = cameraRef.current;
+    if (c == null) return;
+    c.focus(point);
+  }, []);
+
+  //focus
+  const tapGesture = Gesture.Tap().onEnd(({ x, y }) => {
+    runOnJS(focus)({ x, y });
+  });
+
+  //exposure
+  // 1. create shared value for exposure slider (from -1..0..1)
+  const exposureSlider = useSharedValue(0);
+
+  // 2. map slider to [minExposure, 0, maxExposure]
+  const exposureValue = useDerivedValue(() => {
+    if (device == null) return 0;
+
+    return interpolate(
+      exposureSlider.value,
+      [-1, 0, 1],
+      [device.minExposure, 0, device.maxExposure]
+    );
+  }, [exposureSlider, device]);
+
+  // 3. pass it as an animated prop
+  const exposureAnimatedProps = useAnimatedProps(
+    () => ({
+      exposure: exposureValue.value,
+    }),
+    [exposureValue]
+  );
 
   useFocusEffect(
     useCallback(() => {
@@ -80,7 +121,10 @@ export default function CameraScreen() {
   }, [hasPermission]);
 
   //zoom
-  const animatedProps = useAnimatedProps(() => ({ zoom: zoom.value }), [zoom]);
+  const zoomAnimatedProps = useAnimatedProps(
+    () => ({ zoom: zoom.value }),
+    [zoom]
+  );
 
   const onTakePicturePressed = async () => {
     try {
@@ -126,7 +170,7 @@ export default function CameraScreen() {
       <View style={styles.container}>
         <Stack.Screen options={{ headerShown: false }} />
         {/* zoom */}
-        <GestureDetector gesture={gesture}>
+        <GestureDetector gesture={Gesture.Race(pinchGesture, tapGesture)}>
           <ReanimatedCamera
             ref={cameraRef}
             style={styles.camera}
@@ -135,7 +179,8 @@ export default function CameraScreen() {
             format={format}
             isActive={isActive && !photo}
             //zoom
-            animatedProps={animatedProps}
+            //Exposure
+            animatedProps={(exposureAnimatedProps, zoomAnimatedProps)}
           />
         </GestureDetector>
 
