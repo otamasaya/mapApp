@@ -62,19 +62,18 @@ export default function CameraScreen() {
   };
 
   const uploadPhoto = async () => {
-    console.log(photo.path);
-    const randomNumber = Math.floor(Math.random() * 100) + 1;
-    const imagePath =
-      "photo/image-" + new Date().getTime().toString() + randomNumber;
-    await reference.ref(imagePath).putFile(photo.path);
-    console.log(imagePath);
-    router.replace("/index");
+    console.log(photo.Path);
+    router.navigate({
+      pathname: "/edit",
+      params: { imageUri: photo.Path },
+    });
   };
 
   async function pickImage() {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      allowsEditing: false,
+      allowsEditing: true,
+      aspect: [3, 4],
       quality: 1,
     });
 
@@ -83,7 +82,11 @@ export default function CameraScreen() {
       // const imagePath =
       //   "photo/image-" + new Date().getTime().toString() + randomNumber;
       // await reference.ref(imagePath).putFile(result.assets[0].uri);
-      router.navigate({ pathname: "/edit", params: result.assets[0].uri });
+      console.log(result.assets[0].uri);
+      router.navigate({
+        pathname: "/edit",
+        params: { imageUri: result.assets[0].uri },
+      });
     }
   }
 
