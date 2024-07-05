@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { SafeAreaView, View, Text, Dimensions, StyleSheet,Image, ImageBackground } from "react-native";
+import { SafeAreaView, View, Text, Button, Dimensions, StyleSheet, Image, ImageBackground } from "react-native";
 
 import Geolocation from "@react-native-community/geolocation";
 import MapView, { Callout, Marker } from "react-native-maps";
@@ -85,12 +85,12 @@ const TrackUserMapView = () => {
             }}
             title="Ikuta Shrine"
             description="0.6km"
-            >
+          >
             <Image
-          source={require('./image/pin_blue.png')}
-          style={styles.markerImage}
-        />
-        </Marker>
+              source={require('./image/pin_blue.png')}
+              style={styles.markerImage}
+            />
+          </Marker>
 
 
           <Marker
@@ -102,13 +102,13 @@ const TrackUserMapView = () => {
             description="ここでアプリは作られた。"
           >
             <Image
-          source={require('./image/pin_orange.png')}
-          style={styles.markerImage}
-        />
-            </Marker>
+              source={require('./image/pin_orange.png')}
+              style={styles.markerImage}
+            />
+          </Marker>
 
-          
-            <Marker
+
+          <Marker
             coordinate={{
               latitude: 34.687316813281704,
               longitude: 135.19256090993977,
@@ -117,11 +117,17 @@ const TrackUserMapView = () => {
             description="ここでアプリは作られていない"
           >
             <Image
-          source={require('./image/pin_yellow.png')}
-          style={styles.markerImage}
-        />
-            </Marker>
-        
+              source={require('./image/pin_yellow.png')}
+              style={styles.markerImage}
+            />
+          </Marker>
+
+          <Button
+            title="LOGIN"
+          />
+
+
+
           {/* Debug 用に coords オブジェクトを表示
           <View style={styles.debugContainer}>
             <Text>{`coords: {`}</Text>
@@ -136,152 +142,152 @@ const TrackUserMapView = () => {
   );
 };
 
-const customMapStyle = [  
-{
-  "featureType": "poi.business",// ビジネス（ビル、店舗など）のラベルを非表示
-  "elementType": "labels",
-  "stylers": [
-    {
-      "visibility": "off"
-    }
-  ]
-},
-{
-  "featureType": "poi.business",// ビジネス（ビル、店舗など）のアイコンを非表示
-  "elementType": "labels.icon",
-  "stylers": [
-    {
-      "visibility": "off"
-    }
-  ]
-},
-{
-  "featureType": "poi.attraction", // 観光スポットのラベルを非表示
-  "elementType": "labels",
-  "stylers": [
-    {
-      "visibility": "off"
-    }
-  ]
-},
-{
-  "featureType": "poi.government", // 政府機関のラベルを非表示
-  "elementType": "labels",
-  "stylers": [
-    {
-      "visibility": "off"
-    }
-  ]
-},
-{
-  "featureType": "poi.medical", // 医療施設のラベルを非表示
-  "elementType": "labels",
-  "stylers": [
-    {
-      "visibility": "off"
-    }
-  ]
-},
-{
-  "featureType": "poi.park", // 公園のラベルを非表示
-  "elementType": "labels",
-  "stylers": [
-    {
-      "visibility": "off"
-    }
-  ]
-},
-{
-  "featureType": "poi.place_of_worship", // 宗教施設のラベルを非表示
-  "elementType": "labels",
-  "stylers": [
-    {
-      "visibility": "off"
-    }
-  ]
-},
-{
-  "featureType": "poi.school", // 学校のラベルを非表示
-  "elementType": "labels",
-  "stylers": [
-    {
-      "visibility": "off"
-    }
-  ]
-},
-{
-  "featureType": "poi.sports_complex", // スポーツ施設のラベルを非表示
-  "elementType": "labels",
-  "stylers": [
-    {
-      "visibility": "off"
-    }
-  ]
-},
-{
-  "featureType": "road", // 道路の号線表示を非表示
-  "elementType": "labels",
-  "stylers": [
-    {
-      "visibility": "off"
-    }
-  ]
-},{
-  "featureType": "administrative.locality", // 町、村、区のラベルを非表示
-  "elementType": "labels.text.fill",
-  "stylers": [
-    {
-      "visibility": "off"
-    }
-  ]
-},
-{
-  "featureType": "administrative.locality", // 町、村、区のラベルのアウトラインを非表示
-  "elementType": "labels.text.stroke",
-  "stylers": [
-    {
-      "visibility": "off"
-    }
-  ]
-},
-{
-  "featureType": "administrative.neighborhood", // 住所（丁目）のラベルを非表示
-  "elementType": "labels.text.fill",
-  "stylers": [
-    {
-      "visibility": "off"
-    }
-  ]
-},
-{
-  "featureType": "administrative.neighborhood",    // 住所（丁目）のラベルのアウトラインを非表示
-  "elementType": "labels.text.stroke",
-  "stylers": [
-    {
-      "visibility": "off"
-    }
-  ]
-},
+const customMapStyle = [
+  {
+    "featureType": "poi.business",// ビジネス（ビル、店舗など）のラベルを非表示
+    "elementType": "labels",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "poi.business",// ビジネス（ビル、店舗など）のアイコンを非表示
+    "elementType": "labels.icon",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "poi.attraction", // 観光スポットのラベルを非表示
+    "elementType": "labels",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "poi.government", // 政府機関のラベルを非表示
+    "elementType": "labels",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "poi.medical", // 医療施設のラベルを非表示
+    "elementType": "labels",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "poi.park", // 公園のラベルを非表示
+    "elementType": "labels",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "poi.place_of_worship", // 宗教施設のラベルを非表示
+    "elementType": "labels",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "poi.school", // 学校のラベルを非表示
+    "elementType": "labels",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "poi.sports_complex", // スポーツ施設のラベルを非表示
+    "elementType": "labels",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "road", // 道路の号線表示を非表示
+    "elementType": "labels",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  }, {
+    "featureType": "administrative.locality", // 町、村、区のラベルを非表示
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "administrative.locality", // 町、村、区のラベルのアウトラインを非表示
+    "elementType": "labels.text.stroke",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "administrative.neighborhood", // 住所（丁目）のラベルを非表示
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "administrative.neighborhood",    // 住所（丁目）のラベルのアウトラインを非表示
+    "elementType": "labels.text.stroke",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
 
-//ここから地図の色
+  //ここから地図の色
   {
     "featureType": "landscape.natural",// 自然地形の色
     "elementType": "geometry",
     "stylers": [
       {
-        "color": "#66bb66" 
+        "color": "#66bb66"
       }
     ]
   },
-{
-  "featureType": "landscape.man_made",  //地面の色
-  "elementType": "geometry",
-  "stylers": [
-    {
-      "color": "#e0ffe0" 
-    }
-  ]
-},
+  {
+    "featureType": "landscape.man_made",  //地面の色
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#e0ffe0"
+      }
+    ]
+  },
   {
     "featureType": "water",
     "elementType": "geometry.fill",
@@ -291,7 +297,7 @@ const customMapStyle = [
       }
     ]
   },
-{
+  {
     "featureType": "road",  //  一般道の色
     "elementType": "geometry",
     "stylers": [
@@ -330,7 +336,7 @@ const customMapStyle = [
     ]
   },
   {
-    
+
     "featureType": "poi.park",// 公園の色
     "elementType": "geometry",
     "stylers": [
@@ -344,7 +350,7 @@ const customMapStyle = [
     "elementType": "geometry",
     "stylers": [
       {
-        "color": "#33ccff"  
+        "color": "#33ccff"
       }
     ]
   },
@@ -353,8 +359,8 @@ const customMapStyle = [
     "elementType": "geometry.stroke",
     "stylers": [
       {
-        "color": "#ffffff" , 
-        "weight": 1  
+        "color": "#ffffff",
+        "weight": 1
       },
 
     ]
@@ -367,7 +373,7 @@ const customMapStyle = [
         "color": "#ffeecc"
       }
     ]
-  },{
+  }, {
     // 医療機関の背景色を指定（例: 薄いピンク色）
     "featureType": "poi.medical",
     "elementType": "geometry",
@@ -382,8 +388,8 @@ const customMapStyle = [
 
 const styles = StyleSheet.create({
 
-  absoluteFillObject:{
-    flex:1
+  absoluteFillObject: {
+    flex: 1
   },
 
   radius: {
