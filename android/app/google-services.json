@@ -1,13 +1,14 @@
 {
   "project_info": {
-    "project_number": "870253709215",
-    "project_id": "base-364ac",
-    "storage_bucket": "base-364ac.appspot.com"
+    "project_number": "507760764695",
+    "firebase_url": "https://mapapp-23ee8-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "mapapp-23ee8",
+    "storage_bucket": "mapapp-23ee8.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:870253709215:android:f2622dc5d202e925681faa",
+        "mobilesdk_app_id": "1:507760764695:android:2b752b1e7904740af43952",
         "android_client_info": {
           "package_name": "com.anonymous.mapApp"
         }
@@ -15,7 +16,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCByGbqBQp0kjqVhnqU5Dg8MW06tWxbHXQ"
+          "current_key": "AIzaSyDG0Z_YMZhjfKlSaBtWPemftzfvuzlaWPg"
         }
       ],
       "services": {
