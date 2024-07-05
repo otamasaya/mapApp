@@ -79,7 +79,7 @@ export default function CameraScreen() {
     }
   }, [hasPermission]);
 
-  //zoom ⭐️
+  //zoom
   const animatedProps = useAnimatedProps(() => ({ zoom: zoom.value }), [zoom]);
 
   const onTakePicturePressed = async () => {
