@@ -74,17 +74,16 @@ export default function CameraScreen() {
   async function pickImage() {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      allowsEditing: true,
-      aspect: [3, 4],
+      allowsEditing: false,
       quality: 1,
     });
 
     if (!result.canceled) {
-      const randomNumber = Math.floor(Math.random() * 100) + 1;
-      const imagePath =
-        "photo/image-" + new Date().getTime().toString() + randomNumber;
-      await reference.ref(imagePath).putFile(result.assets[0].uri);
-      router.replace("/index");
+      // const randomNumber = Math.floor(Math.random() * 100) + 1;
+      // const imagePath =
+      //   "photo/image-" + new Date().getTime().toString() + randomNumber;
+      // await reference.ref(imagePath).putFile(result.assets[0].uri);
+      router.navigate({ pathname: "/edit", params: result.assets[0].uri });
     }
   }
 
