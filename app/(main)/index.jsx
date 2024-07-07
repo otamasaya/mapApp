@@ -36,16 +36,16 @@ const TrackUserMapView = () => {
 
   const [modalVisible, setModalVisible] = useState(false); // モーダルの表示状態を管理するステート
   const [distance, setDistance] = useState(0);
-  const [image,setimage] = useState(require('./image/pin_blue.png'))  //ピンの色を保存する
+  const [image, setimage] = useState(require("../image/pin_blue.png")); //ピンの色を保存する
 
   const YourComponent = () => {
     useEffect(() => {
       // コンポーネントがマウントされたときに実行する処理
       handleMarkerPress(34.69891700747491, 135.19364647347652); // 適切な値を渡す
-  
+
       // 他の初期化処理もここに書くことができます
     }, []);
-  }
+  };
 
   const handleMarkerPress = (latitude, longitude) => {
     const distance = calculateDistance(
@@ -54,16 +54,16 @@ const TrackUserMapView = () => {
       latitude,
       longitude
     );
-    console.log("A")
+    console.log("A");
     setDistance(distance); // 距離を状態として更新
-    console.log(image)
-    if(distance < 50){  //距離が50m以上離れているかのチェック
-      setimage(require('./image/pin_green.png'))  //離れていない(近い場合)は緑のピン
+    console.log(image);
+    if (distance < 50) {
+      //距離が50m以上離れているかのチェック
+      setimage(require("../image/pin_green.png")); //離れていない(近い場合)は緑のピン
+    } else {
+      setimage(require("../image/pin_blue.png")); //離れている(遠い場合)は青のピン
     }
-    else{
-      setimage(require('./image/pin_blue.png')) //離れている(遠い場合)は青のピン
-    }
-    console.log(distance)
+    console.log(distance);
   };
 
   function toRadians(degrees) {
@@ -160,10 +160,7 @@ const TrackUserMapView = () => {
             //   handleMarkerPress(34.69891700747491, 135.19364647347652)
             // } // マーカーが押されたときの処理
           >
-            <Image
-          source={image}
-          style={styles.markerImage}
-        />
+            <Image source={image} style={styles.markerImage} />
           </Marker>
           <Marker
             coordinate={{
@@ -174,13 +171,12 @@ const TrackUserMapView = () => {
             description="冬にはルミナリエが開催されています。"
           ></Marker>
           <YourComponent
-          initialRegion={initialRegion}
-          position={position}
-          LATITUDE_DELTA={LATITUDE_DELTA}
-          LONGITUDE_DELTA={LONGITUDE_DELTA}
-        />
+          // initialRegion={initialRegion}
+          // position={position}
+          // LATITUDE_DELTA={LATITUDE_DELTA}
+          // LONGITUDE_DELTA={LONGITUDE_DELTA}
+          />
         </MapView>
-        
       )}
 
       <Modal
@@ -208,7 +204,16 @@ const TrackUserMapView = () => {
           </View>
         </View>
       </Modal>
-      <Link href="/src/camera" asChild>
+      <Link
+        href={{
+          pathname: "/camera",
+          params: {
+            latitude: position.latitude,
+            longitude: position.longitude,
+          },
+        }}
+        asChild
+      >
         <Pressable
           style={{
             position: "absolute",
