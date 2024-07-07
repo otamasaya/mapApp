@@ -36,7 +36,7 @@ const TrackUserMapView = () => {
 
   const [modalVisible, setModalVisible] = useState(false); // モーダルの表示状態を管理するステート
   const [distance, setDistance] = useState(0);
-  const [image, setimage] = useState(require("./image/pin_blue.png")); //ピンの色を保存する
+  const [image, setimage] = useState(require("../image/pin_blue.png")); //ピンの色を保存する
 
   const YourComponent = () => {
     useEffect(() => {
@@ -59,9 +59,9 @@ const TrackUserMapView = () => {
     console.log(image);
     if (distance < 50) {
       //距離が50m以上離れているかのチェック
-      setimage(require("./image/pin_green.png")); //離れていない(近い場合)は緑のピン
+      setimage(require("../image/pin_green.png")); //離れていない(近い場合)は緑のピン
     } else {
-      setimage(require("./image/pin_blue.png")); //離れている(遠い場合)は青のピン
+      setimage(require("../image/pin_blue.png")); //離れている(遠い場合)は青のピン
     }
     console.log(distance);
   };
@@ -171,10 +171,10 @@ const TrackUserMapView = () => {
             description="冬にはルミナリエが開催されています。"
           ></Marker>
           <YourComponent
-            initialRegion={initialRegion}
-            position={position}
-            LATITUDE_DELTA={LATITUDE_DELTA}
-            LONGITUDE_DELTA={LONGITUDE_DELTA}
+          // initialRegion={initialRegion}
+          // position={position}
+          // LATITUDE_DELTA={LATITUDE_DELTA}
+          // LONGITUDE_DELTA={LONGITUDE_DELTA}
           />
         </MapView>
       )}

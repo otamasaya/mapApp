@@ -1,5 +1,5 @@
 import { View, Image, StyleSheet, Pressable } from "react-native";
-import { useLocalSearchParams } from "expo-router";
+import { useLocalSearchParams, router } from "expo-router";
 import storage from "@react-native-firebase/storage";
 import firestore from "@react-native-firebase/firestore";
 
@@ -37,6 +37,8 @@ export default function test() {
       })
       .then()
       .catch((error) => console.log(error));
+
+    // router.replace({ pathname: "../(main)/index.jsx" });
   };
 
   return (
