@@ -177,7 +177,16 @@ const TrackUserMapView = () => {
           </View>
         </View>
       </Modal>
-      <Link href="/camera" asChild>
+      <Link
+        href={{
+          pathname: "/camera",
+          params: {
+            latitude: position.latitude,
+            longitude: position.longitude,
+          },
+        }}
+        asChild
+      >
         <Pressable
           style={{
             position: "absolute",
