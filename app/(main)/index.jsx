@@ -17,7 +17,7 @@ import MapView, { Marker } from "react-native-maps";
 import firestore from "@react-native-firebase/firestore";
 import storage from "@react-native-firebase/storage";
 
-// import customMapStyle from "../component/mapLayout";
+// import { customMapStyle } from "../component/mapLayout.jsx";
 
 const { width, height } = Dimensions.get("window"); //デバイスの幅と高さを取得する
 const ASPECT_RATIO = width / height; //アスペクト比
