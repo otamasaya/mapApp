@@ -47,6 +47,17 @@ const TrackUserMapView = () => {
     }, []);
   }
 
+  const handleMarkerPress2 = () => {
+
+    if(distance < 50){
+      setModalVisible(true)
+    }
+    else
+    {
+      setModalVisible(false)
+    }
+  };
+
   const handleMarkerPress = (latitude, longitude) => {
     const distance = calculateDistance(
       position.latitude,
@@ -57,13 +68,12 @@ const TrackUserMapView = () => {
     console.log("A")
     setDistance(distance); // 距離を状態として更新
     console.log(image)
-    if(distance < 10){  //距離が50m以上離れているかのチェック
+    if(distance < 50){  //距離が50m以上離れているかのチェック
       setimage(require('./image/pin_green.png'))  //離れていない(近い場合)は緑のピン
-      setoperation(false)
+      
     }
     else{
       setimage(require('./image/pin_blue.png')) //離れている(遠い場合)は青のピン
-      setoperation(false)
     }
     console.log(distance)
   };
@@ -158,10 +168,9 @@ const TrackUserMapView = () => {
             }}
             title="神戸電子学生会館"
             description="ここでアプリは作られた。"
-            // onPress={() =>
-            //   handleMarkerPress(34.69891700747491, 135.19364647347652)
-            // } // マーカーが押されたときの処理
-            disabled={operation}
+            onPress={() =>
+            handleMarkerPress2(34.69891700747491, 135.19364647347652)
+            } // マーカーが押されたときの処理
           >
             <Image
           source={image}
