@@ -14,6 +14,8 @@ import { Link } from "expo-router";
 import Geolocation from "@react-native-community/geolocation";
 import MapView, { Marker } from "react-native-maps";
 
+import customMapStyle from "../component/mapLayout";
+
 const { width, height } = Dimensions.get("window"); //デバイスの幅と高さを取得する
 const ASPECT_RATIO = width / height; //アスペクト比
 const LATITUDE_DELTA = 0.01;
@@ -54,12 +56,11 @@ const TrackUserMapView = () => {
       latitude,
       longitude
     );
-    console.log("A");
     setDistance(distance); // 距離を状態として更新
     console.log(image);
     if (distance < 50) {
       //距離が50m以上離れているかのチェック
-      setimage(require("../image/pin_green.png")); //離れていない(近い場合)は緑のピン
+      setimage(require("../image/pin_orange.png")); //離れていない(近い場合)は緑のピン
     } else {
       setimage(require("../image/pin_blue.png")); //離れている(遠い場合)は青のピン
     }
@@ -121,6 +122,7 @@ const TrackUserMapView = () => {
         <MapView
           key={`${initialRegion.latitude}-${initialRegion.longitude}`}
           style={StyleSheet.absoluteFillObject}
+          customMapStyle={customMapStyle}
           region={{
             latitude: position.latitude,
             longitude: position.longitude,
@@ -148,7 +150,9 @@ const TrackUserMapView = () => {
             // onPress={() =>
             //   handleMarkerPress(34.694755595459455, 135.1906974779092)
             // }
-          />
+          >
+            <Image source={image} style={styles.markerImage} />
+          </Marker>
           <Marker
             coordinate={{
               latitude: 34.69891700747491,
@@ -169,13 +173,10 @@ const TrackUserMapView = () => {
             }}
             title="東遊園地"
             description="冬にはルミナリエが開催されています。"
-          ></Marker>
-          <YourComponent
-          // initialRegion={initialRegion}
-          // position={position}
-          // LATITUDE_DELTA={LATITUDE_DELTA}
-          // LONGITUDE_DELTA={LONGITUDE_DELTA}
-          />
+          >
+            <Image source={image} style={styles.markerImage} />
+          </Marker>
+          <YourComponent />
         </MapView>
       )}
 
@@ -266,11 +267,6 @@ const styles = StyleSheet.create({
   },
   map: {
     flex: 1,
-  },
-  markerImage: {
-    width: 50,
-    height: 50,
-    resizeMode: "contain",
   },
   debugContainer: {
     backgroundColor: "#fff",
