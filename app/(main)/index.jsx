@@ -72,6 +72,15 @@ const TrackUserMapView = () => {
     console.log(distance);
   };
 
+  const handleMarkerPress2 = () => {
+    if (distance < 50) {
+      //距離が50m以上離れているかのチェック
+      setModalVisible(true);
+    } else {
+      setModalVisible(false);
+    }
+  };
+
   function toRadians(degrees) {
     return (degrees * Math.PI) / 180;
   }
@@ -218,7 +227,7 @@ const TrackUserMapView = () => {
       <MyModal
         visible={modalVisible}
         imageUri={imageUri}
-        onClose={() => setModalVisible(false)}
+        onClose={() => handleMarkerPress2()}
       />
 
       <Link
