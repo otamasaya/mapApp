@@ -64,10 +64,8 @@ const TrackUserMapView = () => {
     if (distance < 50) {
       //距離が50m以上離れているかのチェック
       setimage(require("../image/pin_orange.png")); //離れていない(近い場合)は緑のピン
-      setModalVisible(true);
     } else {
       setimage(require("../image/pin_blue.png")); //離れている(遠い場合)は青のピン
-      setModalVisible(false);
     }
     console.log(distance);
   };
@@ -206,7 +204,7 @@ const TrackUserMapView = () => {
             }}
             title="神戸電子学生会館"
             description="ここでアプリは作られた。"
-            onPress={() => setModalVisible(true)}
+            onPress={() => handleMarkerPress2()}
           >
             <Image source={image} style={styles.markerImage} />
           </Marker>
@@ -227,7 +225,7 @@ const TrackUserMapView = () => {
       <MyModal
         visible={modalVisible}
         imageUri={imageUri}
-        onClose={() => handleMarkerPress2()}
+        onClose={() => setModalVisible(false)}
       />
 
       <Link
