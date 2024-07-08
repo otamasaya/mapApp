@@ -122,11 +122,6 @@ const TrackUserMapView = () => {
             />
           </Marker>
 
-          <Button
-            title="LOGIN"
-          />
-
-
 
           {/* Debug 用に coords オブジェクトを表示
           <View style={styles.debugContainer}>
@@ -138,9 +133,102 @@ const TrackUserMapView = () => {
           </View> */}
         </MapView>
       )}
+          <View style={styles.loignBtnContainer}>
+            <Button
+              title="ログイン"
+              onPress={() => alert('ボタンが押されました')}
+              style={styles.loginBtn}
+            />
+          </View>
+
     </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+
+  absoluteFillObject: {
+    flex: 1
+  },
+
+  radius: {
+    width: 50,
+    height: 50,
+    borderRadius: 50 / 2,
+    overflow: "hidden",
+    backgroundColor: "rgba(0, 112, 255, 0.1)",
+    borderWidth: 1,
+    borderColor: "rgba(0, 112, 255, 0.3)",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  marker: {
+    width: 20,
+    height: 20,
+    borderWidth: 3,
+    borderColor: "white",
+    borderRadius: 20 / 2,
+    overflow: "hidden",
+    backgroundColor: "#007AFF",
+  },
+  spot: {
+    width: 20,
+    height: 20,
+    borderWidth: 3,
+    borderColor: "white",
+    borderRadius: 20 / 20,
+    overflow: "hidden",
+    backgroundColor: "#c71585",
+  },
+  container: {
+    width: "100%",
+    height: "100%",
+  },
+  map: {
+    flex: 1,
+  },
+  markerImage: {
+    width: 50,
+    height: 50,
+  },
+  debugContainer: {
+    backgroundColor: "#fff",
+    opacity: 0.8,
+    position: "absolute",
+    bottom: 10,
+    left: 10,
+    padding: 10,
+  },
+  errorContainer: {
+    position: "absolute",
+    top: 50,
+    left: 0,
+    right: 0,
+    backgroundColor: "red",
+    padding: 10,
+  },
+  errorText: {
+    color: "#fff",
+    textAlign: "center",
+  },
+  loignBtnContainer: {
+    position: 'absolute',
+    top: 10,
+    right: 10,
+    borderRadius: 5,
+    padding: 10,
+  },
+  
+  loignBtn: {
+    position: 'absolute',
+    top: 10,
+    right: 10,
+    borderRadius: 5,
+    padding: 10,
+  },
+});
+
+
 
 const customMapStyle = [
   {
@@ -385,73 +473,5 @@ const customMapStyle = [
   },
 ];
 
-
-const styles = StyleSheet.create({
-
-  absoluteFillObject: {
-    flex: 1
-  },
-
-  radius: {
-    width: 50,
-    height: 50,
-    borderRadius: 50 / 2,
-    overflow: "hidden",
-    backgroundColor: "rgba(0, 112, 255, 0.1)",
-    borderWidth: 1,
-    borderColor: "rgba(0, 112, 255, 0.3)",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  marker: {
-    width: 20,
-    height: 20,
-    borderWidth: 3,
-    borderColor: "white",
-    borderRadius: 20 / 2,
-    overflow: "hidden",
-    backgroundColor: "#007AFF",
-  },
-  spot: {
-    width: 20,
-    height: 20,
-    borderWidth: 3,
-    borderColor: "white",
-    borderRadius: 20 / 20,
-    overflow: "hidden",
-    backgroundColor: "#c71585",
-  },
-  container: {
-    width: "100%",
-    height: "100%",
-  },
-  map: {
-    flex: 1,
-  },
-  markerImage: {
-    width: 50,
-    height: 50,
-  },
-  debugContainer: {
-    backgroundColor: "#fff",
-    opacity: 0.8,
-    position: "absolute",
-    bottom: 10,
-    left: 10,
-    padding: 10,
-  },
-  errorContainer: {
-    position: "absolute",
-    top: 50,
-    left: 0,
-    right: 0,
-    backgroundColor: "red",
-    padding: 10,
-  },
-  errorText: {
-    color: "#fff",
-    textAlign: "center",
-  },
-});
 
 export default TrackUserMapView;
