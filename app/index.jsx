@@ -37,7 +37,7 @@ const TrackUserMapView = () => {
   const [modalVisible, setModalVisible] = useState(false); // モーダルの表示状態を管理するステート
   const [distance, setDistance] = useState(0);
   const [image,setimage] = useState(require('./image/pin_blue.png'))  //ピンの色を保存する
-
+  const [operation,setoperation] = useState(false)
   const YourComponent = () => {
     useEffect(() => {
       // コンポーネントがマウントされたときに実行する処理
@@ -57,11 +57,13 @@ const TrackUserMapView = () => {
     console.log("A")
     setDistance(distance); // 距離を状態として更新
     console.log(image)
-    if(distance < 50){  //距離が50m以上離れているかのチェック
+    if(distance < 10){  //距離が50m以上離れているかのチェック
       setimage(require('./image/pin_green.png'))  //離れていない(近い場合)は緑のピン
+      setoperation(false)
     }
     else{
       setimage(require('./image/pin_blue.png')) //離れている(遠い場合)は青のピン
+      setoperation(false)
     }
     console.log(distance)
   };
@@ -159,6 +161,7 @@ const TrackUserMapView = () => {
             // onPress={() =>
             //   handleMarkerPress(34.69891700747491, 135.19364647347652)
             // } // マーカーが押されたときの処理
+            disabled={operation}
           >
             <Image
           source={image}
