@@ -64,8 +64,10 @@ const TrackUserMapView = () => {
     if (distance < 50) {
       //距離が50m以上離れているかのチェック
       setimage(require("../image/pin_orange.png")); //離れていない(近い場合)は緑のピン
+      setModalVisible(true);
     } else {
       setimage(require("../image/pin_blue.png")); //離れている(遠い場合)は青のピン
+      setModalVisible(false);
     }
     console.log(distance);
   };
@@ -345,7 +347,7 @@ const MyModal = ({ visible, imageUri, onClose }) => {
           {imageUri ? (
             <Image
               source={{ uri: imageUri }}
-              style={{ width: 200, height: 200 }}
+              style={{ width: 300, height: 400 }}
             />
           ) : (
             <ActivityIndicator size="large" color="#0000ff" />
