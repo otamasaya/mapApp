@@ -351,6 +351,7 @@ const MyModal = ({ visible, imageUri, onClose }) => {
     >
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
         <View style={{ backgroundColor: "white", padding: 20 }}>
+        <Text>ユーザーID</Text>
           {imageUri ? (
             <Image
               source={{ uri: imageUri }}
@@ -360,6 +361,7 @@ const MyModal = ({ visible, imageUri, onClose }) => {
             <ActivityIndicator size="large" color="#0000ff" />
           )}
           <TouchableOpacity onPress={onClose}>
+            <Text>投稿テキスト</Text>
             <Text>Close</Text>
           </TouchableOpacity>
         </View>
