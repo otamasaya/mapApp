@@ -234,6 +234,7 @@ const TrackUserMapView = () => {
           params: {
             latitude: position.latitude,
             longitude: position.longitude,
+            spotId: 0,
           },
         }}
         asChild
