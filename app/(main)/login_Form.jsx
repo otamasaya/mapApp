@@ -30,12 +30,11 @@ const LoginScreen = () => {
       />
 
       <Text
-      style={styles.label}
-      
+      style={styles.linklabel}
       onPress={() => navigation.navigate('index')}>Forgot password?</Text>
       
       <Text
-      style={styles.label}>Dont't have an account?</Text>
+      style={styles.noamllabel}>Dont't have an account?</Text>
 
       <Button
         title="SIGN UP"
@@ -55,15 +54,23 @@ const styles = StyleSheet.create({
     margin: 10,
     fontSize: 20,
     height: 40,
-    borderBottomWidth: 1,
+    borderBottomWidth: 2,
     marginBottom: 12,
     paddingHorizontal: 8,
   },
-  label:{
+  noamllabel:{
     fontSize:16,
     paddingTop: 15,
     paddingBottom:15,
     textAlign: 'center'
+  },
+  linklabel:{
+    fontSize:16,
+    paddingTop: 15,
+    paddingBottom:15,
+    textAlign: 'center',
+    textDecorationLine: 'underline',
+    color: '#1a0dab'
   }
 });
 
